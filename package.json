@@ -1,0 +1,21 @@
+{
+  "name": "node-js-code",
+  "version": "1.0.0",
+  "description": "Using Node js for creating this programs",
+  "main": "FileSync.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node info.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sajithmym/Node-js-Simple.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sajithmym/Node-js-Simple/issues"
+  },
+  "homepage": "https://github.com/sajithmym/Node-js-Simple#readme"
+}
