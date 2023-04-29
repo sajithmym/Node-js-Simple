@@ -1,4 +1,5 @@
 const Express = require("express")
+const path = require("path")
 const BodyParser = require("body-parser")
 
 const method = require("./Routes/Fun")
@@ -13,7 +14,7 @@ app.use("/fun",method)
 app.use(Home)
 
 app.use("/",(req,res,next)=>{
-    res.status(404).send(` <Center> <h2 style="margin-top:10%;"> Page Not Found </h2> </Center>`)
+    res.status(404).sendFile(path.join(__dirname,"views","ms.html"))
 })
 
 // const server  = Http.createServer(app)
