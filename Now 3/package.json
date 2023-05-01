@@ -4,7 +4,8 @@
   "description": "this my coding",
   "main": "app.js",
   "scripts": {
-    "test": "npm start"
+    "test": "npm start",
+    "start" : "nodemon app.js"
   },
   "author": "sajithmym",
   "license": "ISC",
