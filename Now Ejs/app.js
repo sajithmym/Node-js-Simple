@@ -10,6 +10,7 @@ const app = Express()
 app.use(BodyParser.urlencoded({extended : false}))
 app.set("view engine","ejs")
 app.set("views","views")
+app.use(Express.static(path.join(__dirname,'css')))
 
 app.use("/fun",method.Router)
 

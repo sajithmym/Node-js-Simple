@@ -6,13 +6,13 @@ const router = express.Router()
 const Show = require("./Fun")
 
 router.get('/name',(req,res,next)=>{
-    console.log("Sajithmym 2");
-    res.send(` <Center> <h2 style="margin-top:10%;"> Hi i am Sajithmym... </h2> </Center>`)
+    // console.log("Sajithmym 2");
+    res.render('name',{title:"Name"})
 })
 
 router.get('/dev',(req,res,next)=>{
-    console.log("Sajithmym 3");
-    res.send(` <Center> <h2 style="margin-top:10%;"> Hi i am Nodeja Developer... </h2> </Center>`)
+    // console.log("Sajithmym 3");
+    res.render('dev',{title:"Developer"})
 })
 
 
