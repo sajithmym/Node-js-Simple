@@ -18,8 +18,8 @@ router.get('/dev',(req,res,next)=>{
 
 
 router.get('/',(req,res,next)=>{
-    console.log(Show.data);
-    res.sendFile(path.join(__dirname,"..","views","shop.html"))
+    // res.sendFile(path.join(__dirname,"..","views","shop.html"))
+    res.render("shop",{title:"Home page",data : Show.data})
 })
 
 module.exports = router

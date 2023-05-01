@@ -14,7 +14,8 @@ router.post('/message', (req, res, next) => {
 
 router.get('/add', (req, res, next) => {
     console.log("Sajithmym 3");
-    res.sendFile(path.join(__dirname, "..", "views", "add.html"))
+    // res.sendFile(path.join(__dirname, "..", "views", "add.html"))
+    res.render("add",{title:"Adding page"})
 })
 
 module.exports.Router = router
