@@ -1,22 +1,12 @@
 const express = require("express")
 const path = require("path")
 
-const router = express.Router()
+const Definition = require("../Controller/def")
 
-const Data = []
+const router = express.Router() 
 
-router.post('/message', (req, res, next) => {
-    // console.log("Sajithmym 3");
-    // console.log(req.body);
-    Data.push({ title: req.body.fname })
-    res.redirect("/")
-})
+router.post('/message', Definition.Message)
 
-router.get('/add', (req, res, next) => {
-    // console.log("Sajithmym 3");
-    // res.sendFile(path.join(__dirname, "..", "views", "add.html"))
-    res.render("add",{title:"Adding page"})
-})
+router.get('/add', Definition.Add)
 
 module.exports.Router = router
-module.exports.data = Data
