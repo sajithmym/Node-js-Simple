@@ -1,0 +1,25 @@
+<%- include('ReUse/head.ejs') %>
+  <body>
+    <header>
+      <%- include('ReUse/nav.ejs') %>
+    </header>
+
+    <main>
+                <center>
+              
+      <% if (data.length > 0) { %>
+          <h1>My Products</h1> <br/> <br/>
+
+          <% for (let i of data) { %>
+                <h4> <%= i.title %></h4>
+          <% } %>
+
+      <% } else { %>
+        <h1> No Producs Here Pleace Add </h1>
+      <% } %>
+
+
+                </center>
+    </main>
+  </body>
+</html>

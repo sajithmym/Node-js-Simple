@@ -43,7 +43,17 @@ form input[type="submit"]{
     font-size: large;
     margin-top: 20px;
     padding: 5px;
-    background: blueviolet;
+    background: rgb(34, 2, 63);
     color: white;
     display: block;
+}
+
+.list{
+    margin-top: 5%;
+    background-color: rgb(48, 41, 58);
+    color: rgb(252, 255, 255);
+    font-size: larger;
+    width: max-content;
+    padding: 20px;
+    border-radius: 5px;
 }
