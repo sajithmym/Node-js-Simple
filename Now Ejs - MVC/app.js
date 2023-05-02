@@ -4,7 +4,7 @@ const BodyParser = require("body-parser")
 
 const method = require("./Routes/Fun")
 const Home =  require("./Routes/home")
-// const Http = require("http")
+
 const app = Express()
 
 app.use(BodyParser.urlencoded({extended : false}))
