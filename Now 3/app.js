@@ -1,13 +1,14 @@
 const Pkg = require("express")
-const path = require("path")
 const Get = require("./Route/get")
 const Post = require("./Route/post")
+const BP = require("body-parser")
 
 const Dude = Pkg()
-Dude.set(Pkg.static(path.join(__dirname,'css')))
+Dude.use(Pkg.static('css'))
+Dude.use(BP.urlencoded({extended : false}))
+
 Dude.set('view engine','ejs')
 Dude.set('views','Page')
-
 
 Dude.use(Get.r)
 Dude.use(Post.r)

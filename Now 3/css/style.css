@@ -5,3 +5,27 @@ h1 {
   font-weight: bolder;
   font-size: 35pt;
 }
+
+body {
+  background-color: lightseagreen;
+  animation: bg 20s linear infinite;
+}
+
+@keyframes bg {
+  0%,
+  100% {
+    background-color: black;
+  }
+
+  25% {
+    background-color: whitesmoke;
+  }
+
+  50% {
+    background-color: lightseagreen;
+  }
+
+  75% {
+    background-color: blue;
+  }
+}
