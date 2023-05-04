@@ -11,9 +11,8 @@ const dev = (req, res, next) => {
 }
 
 const root = (req, res, next) => {
-    const pro = ModelByMe.fetchAll()
-    console.log(pro);
-    res.render("shop", { title: "Home page", data: pro })
+    let Full = ModelByMe.fetchAll()
+    res.render("shop", { title: "Home page", data: Full } )
 }
 
 module.exports.Name = name
