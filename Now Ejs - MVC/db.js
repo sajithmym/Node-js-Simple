@@ -7,4 +7,5 @@ const pool = mysql.createPool({
     database : 'easy_booking'
 })
 
+
 module.exports = pool.promise()

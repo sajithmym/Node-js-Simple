@@ -1,4 +1,5 @@
 const Express = require("express")
+const db = require('./db');
 const path = require("path")
 const BodyParser = require("body-parser")
 
@@ -11,6 +12,7 @@ app.use(BodyParser.urlencoded({extended : false}))
 app.set("view engine","ejs")
 app.set("views","views")
 app.use(Express.static(path.join(__dirname,'css')))
+
 
 app.use("/fun",method.Router)
 
