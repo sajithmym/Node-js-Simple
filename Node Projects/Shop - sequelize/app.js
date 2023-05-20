@@ -22,4 +22,8 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
+db.sync()
+.then ( r => console.log(r) )
+.catch ( r => console.log(r) )
+
 app.listen(8085,() => console.log("Server at http://127.0.0.1:8085"));
