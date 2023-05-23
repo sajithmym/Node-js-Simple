@@ -65,7 +65,7 @@ sequelize
     return user.createCart();
   })
   .then(cart => {
-    app.listen(8285, () => console.log("Host in http://127.0.0.1:8285"));
+    app.listen(3000);
   })
   .catch(err => {
     console.log(err);
