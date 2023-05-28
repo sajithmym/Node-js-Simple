@@ -25,7 +25,7 @@ app.use(errorController.get404);
 db.sync()
 .then((result) => {
     // console.log(result);
-    app.listen(8520,()=> console.log("Go to http://127.0.0.1:8520"));
+    app.listen(8520,()=> console.log("Go to http://127.0.0.1:8520"))
 }).catch((err) => {
     console.log(err);
 });
