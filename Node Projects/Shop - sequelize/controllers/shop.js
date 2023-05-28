@@ -30,12 +30,11 @@ exports.getProduct = (req, res, next) => {
   console.log(`----------------> Product id is Now ${prodId}`);
   Product.findByPk(prodId)
     .then(product => {
-      const pageTitleis = "product"
       res.render('shop/product-detail', {
         product: product,
-        pageTitle: pageTitleis,
+        pageTitle: product.title,
         path: '/products'
-      });
+      })
     })
     .catch(err => {
       console.log(err);

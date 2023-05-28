@@ -1,3 +1,4 @@
+const { where } = require('sequelize/types');
 const Product = require('../models/product');
 
 exports.getAddProduct = (req, res, next) => {
@@ -55,14 +56,19 @@ exports.postEditProduct = (req, res, next) => {
   const updatedPrice = req.body.price;
   const updatedImageUrl = req.body.imageUrl;
   const updatedDesc = req.body.description;
-  const updatedProduct = new Product(
-    prodId,
-    updatedTitle,
-    updatedImageUrl,
-    updatedDesc,
-    updatedPrice
-  );
-  updatedProduct.save();
+  
+  Product.findByPk(prodId)
+  .then((product) => {
+    product.title = updatedTitle;
+    product.description = updatedDesc;
+    product.price = updatedPrice;
+    product.imageUrl = updatedImageUrl;
+    product.save()
+  })
+  .catch((err) => {
+    console.log(err)
+  });
+
   res.redirect('/admin/products');
 };
 
@@ -80,6 +86,15 @@ exports.getProducts = (req, res, next) => {
 
 exports.postDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
-  Product.deleteById(prodId);
-  res.redirect('/admin/products');
+  Product.findByPk(prodId)
+  .then((result) => {
+    return result.destroy()
+  })
+  .then(()=>{
+    console.log("Product was Deleted Successfully...");
+    res.redirect('/admin/products');
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 };
