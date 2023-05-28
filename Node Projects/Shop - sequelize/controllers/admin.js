@@ -1,4 +1,3 @@
-const { where } = require('sequelize/types');
 const Product = require('../models/product');
 
 exports.getAddProduct = (req, res, next) => {
@@ -35,19 +34,19 @@ exports.getEditProduct = (req, res, next) => {
     return res.redirect('/')
   }
   const prodId = req.params.productId;
-  Product.findByPk(prodId) 
-  .then (product => {
-    if (!product) {
-      return res.redirect('/');
-    }
-    res.render('admin/edit-product', {
-      pageTitle: 'Edit Product',
-      path: '/admin/edit-product',
-      editing: editMode,
-      product: product
-    });
-  })
-  .catch(e=>console.log(e))
+  Product.findByPk(prodId)
+    .then(product => {
+      if (!product) {
+        return res.redirect('/');
+      }
+      res.render('admin/edit-product', {
+        pageTitle: 'Edit Product',
+        path: '/admin/edit-product',
+        editing: editMode,
+        product: product
+      });
+    })
+    .catch(e => console.log(e))
 };
 
 exports.postEditProduct = (req, res, next) => {
@@ -56,45 +55,43 @@ exports.postEditProduct = (req, res, next) => {
   const updatedPrice = req.body.price;
   const updatedImageUrl = req.body.imageUrl;
   const updatedDesc = req.body.description;
-  
+
   Product.findByPk(prodId)
-  .then((product) => {
-    product.title = updatedTitle;
-    product.description = updatedDesc;
-    product.price = updatedPrice;
-    product.imageUrl = updatedImageUrl;
-    product.save()
-  })
-  .catch((err) => {
-    console.log(err)
-  });
+    .then((product) => {
+      product.title = updatedTitle;
+      product.description = updatedDesc;
+      product.price = updatedPrice;
+      product.imageUrl = updatedImageUrl;
+      product.save()
+    })
+    .catch((err) => {
+      console.log(err)
+    });
 
   res.redirect('/admin/products');
 };
 
 exports.getProducts = (req, res, next) => {
   Product.findAll()
-  .then(products => {
-    res.render('admin/products', {
-      prods: products,
-      pageTitle: 'Admin Products',
-      path: '/admin/products'
-    });
-  })
-  .catch(e => console.log(e))
+    .then(products => {
+      res.render('admin/products', {
+        prods: products,
+        pageTitle: 'Admin Products',
+        path: '/admin/products'
+      });
+    })
+    .catch(e => console.log(e))
 };
 
 exports.postDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
   Product.findByPk(prodId)
-  .then((result) => {
-    return result.destroy()
-  })
-  .then(()=>{
-    console.log("Product was Deleted Successfully...");
-    res.redirect('/admin/products');
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+    .then(pro => {
+      return pro.destroy()
+    })
+    .then(e => {
+      console.log("\n ----------------> Product was successfully Deleted...\n")
+      res.redirect('/admin/products');
+    })
+    .catch(e => console.log(err))
 };
