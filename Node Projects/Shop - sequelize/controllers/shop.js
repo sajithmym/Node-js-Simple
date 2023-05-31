@@ -77,7 +77,7 @@ exports.postCart = (req, res, next) => {
   const prodId = req.body.productId;
   let fetchedCart;
   let newQuantity = 1;
-   console.log(req.user.getCart() );
+   console.log(req.user.getCart());
 };
 
 exports.postCartDeleteProduct = (req, res, next) => {
