@@ -23,14 +23,14 @@ const shopRoutes = require('./routes/shop');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use((req,res,next) => {
+app.use((req, res, next) => {
     user.findByPk(1)
-    .then((result) => {
-        req.User = result
-        next()
-    }).catch((err) => {
-        console.log(err);
-    });
+        .then((result) => {
+            req.User = result
+            next()
+        }).catch((err) => {
+            console.log(err);
+        });
 })
 
 app.use('/admin', adminRoutes);
@@ -45,20 +45,24 @@ Cart.belongsTo(user);
 Cart.belongsToMany(Product, { through: Cart_item });
 Product.belongsToMany(Cart, { through: Cart_item });
 
-db.sync()
-.then((result) => {
-    return user.findByPk(1)
-})
-.then( ur => {
-    if (!ur){
-        return user.create({name : 'sajith',email : 'sajith@gmail.com'})
+db.sync() // sync({ force: true })
+    .then((result) => {
+        return user.findByPk(1)
+    })
+    .then(ur => {
+        if (!ur) {
+            return user.create({ name: 'sajith', email: 'sajith@gmail.com' })
+        }
+        return ur
+    })
+    .then(user => {
+        // console.log('\n---------------------->',user,'\n')
+        return user.createCart();
+    })
+    .then((r) => app.listen(8520, () => {
+        console.log("Go to http://127.0.0.1:8520")
     }
-    return ur
-})
-.then(user => {
-    // console.log('\n---------------------->',user,'\n')
-    app.listen(8520,()=> console.log("Go to http://127.0.0.1:8520"))
-})
-.catch((err) => {
-    console.log(err);
-});
+    ))
+    .catch((err) => {
+        console.log(err);
+    });
