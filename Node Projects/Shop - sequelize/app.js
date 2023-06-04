@@ -23,7 +23,7 @@ const shopRoutes = require('./routes/shop');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use((req, res, next) => {
+app.use((req, res, next) => { 
     user.findByPk(1)
         .then((result) => {
             req.User = result
@@ -53,7 +53,7 @@ db.sync() // sync({ force: true })
         if (!ur) {
             return user.create({ name: 'sajith', email: 'sajith@gmail.com' })
         }
-        return ur
+        return ur 
     })
     .then(user => {
         // console.log('\n---------------------->',user,'\n')

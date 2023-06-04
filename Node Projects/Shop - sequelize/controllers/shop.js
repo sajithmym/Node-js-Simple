@@ -90,13 +90,14 @@ exports.postCart = (req, res, next) => {
       }
 
       if (product) {
-        const oldQuantity = product.cartItem.quantity;
+        let oldQuantity = product.cart_item.quantity;
         newQuantity = oldQuantity + 1;
         return product;
       }
       return Product.findByPk(prodId);
     })
     .then(product => {
+      console.log('\n--------'+newQuantity+'\n');
       return fetchedCart.addProduct(product, {
         through: { quantity: newQuantity }
       });
