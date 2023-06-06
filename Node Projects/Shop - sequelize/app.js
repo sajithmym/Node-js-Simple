@@ -9,6 +9,8 @@ const Product = require('./models/product');
 const user = require('./models/user');
 const Cart = require('./models/cart');
 const Cart_item = require('./models/cart-item');
+const Order = require('./models/order');
+const OrderItem = require('./models/order-item');
 
 const db = require('./util/database');
 
@@ -44,6 +46,9 @@ user.hasOne(Cart);
 Cart.belongsTo(user);
 Cart.belongsToMany(Product, { through: Cart_item });
 Product.belongsToMany(Cart, { through: Cart_item });
+Order.belongsTo(user);
+user.hasMany(Order);
+Order.belongsToMany(Product, { through: OrderItem });
 
 db.sync() // sync({ force: true })
     .then((result) => {
