@@ -12,7 +12,7 @@ app.set("view engine","ejs")
 app.set("views","views")
 app.use(Express.static(path.join(__dirname,'css')))
 
-app.use("/fun",method.Router)
+app.use("/fun",method.Router) 
 
 app.use(Home)
 
