@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const errorController = require('./controllers/error');
+const User = require('./models/user');
 
 const app = express();
 
@@ -14,16 +15,14 @@ app.set('views', 'views');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
-const User = require('./models/user');
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
-  User.findById('64969f6dc4cc60452cd896f3')
+  User.findById('6496a7a627645439c43ec456')
     .then(user => {
-      req.user = user
-      next()
+      req.user = user;
+      next();
     })
     .catch(err => console.log(err));
 });
@@ -38,22 +37,20 @@ mongoose
     'mongodb://localhost:27017/shop'
   )
   .then(result => {
-    User.findOne()
-      .then(user => {
-        if (!user) {
-          const user = new User({
-            name: 'Sajith',
-            email: 'Sajithcool@gmail.com',
-            card: {
-              items: []
-            }
-          })
-          user.save()
-        }
-      })
+    User.findOne().then(user => {
+      if (!user) {
+        const user = new User({
+          name: 'Sajith',
+          email: 'Sajithcool@test.com',
+          cart: {
+            items: []
+          }
+        });
+        user.save();
+      }
+    });
     app.listen(3010, () => console.log("server is http://127.0.0.1:3010"));
   })
   .catch(err => {
     console.log(err);
   });
-
