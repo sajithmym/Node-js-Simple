@@ -5,7 +5,7 @@ let _db;
 
 const mongoConnect = callback => {
   MongoClient.connect(
-    'mongodb://localhost:27017'
+    'mongodb://localhost:27017/shop'
   )
     .then(client => {
       console.log('Connected!');
