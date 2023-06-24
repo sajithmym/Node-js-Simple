@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const errorController = require('./controllers/error');
-// const User = require('./models/user');
+const User = require('./models/user');
 
 const app = express();
 
@@ -14,18 +14,20 @@ app.set('views', 'views');
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
+const user = require('./models/user');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use((req, res, next) => {
-//   User.findById('5baa2528563f16379fc8a610')
-//     .then(user => {
-//       req.user = new User(user.name, user.email, user.cart, user._id);
-//       next();
-//     })
-//     .catch(err => console.log(err));
-// });
+app.use((req, res, next) => {
+  User.findById('64969f6dc4cc60452cd896f3')
+    .then(user => {
+      req.user = user
+      console.log("h1")
+      next()
+    })
+    .catch(err => console.log(err));
+});
 
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
@@ -34,11 +36,25 @@ app.use(errorController.get404);
 
 mongoose
   .connect(
-    'mongodb+srv://maximilian:9u4biljMQc4jjqbe@cluster0-ntrwp.mongodb.net/shop?retryWrites=true'
+    'mongodb://localhost:27017/shop'
   )
   .then(result => {
-    app.listen(3010,() => console.log("server is http://127.0.0.1:3010"));
+    User.findOne()
+      .then(user => {
+        if (!user) {
+          const user = new User({
+            name: 'Sajith',
+            email: 'Sajithcool@gmail.com',
+            card: {
+              items: []
+            }
+          })
+          user.save()
+        }
+      })
+    app.listen(3010, () => console.log("server is http://127.0.0.1:3010"));
   })
   .catch(err => {
     console.log(err);
   });
+
