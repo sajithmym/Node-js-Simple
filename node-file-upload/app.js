@@ -1,6 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
 
 const app = express();
 const upload = multer({ dest: 'uploads/' });
@@ -17,8 +18,14 @@ app.post('/upload', upload.single('fileInput'), (req, res) => {
   const destination = file.destination;
   const filename = file.filename;
 
+  // Create the 'uploaded-images' directory if it doesn't exist
+  const uploadDir = path.join(__dirname, 'uploaded-images');
+  if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir);
+  }
+
   // Move the uploaded file to the project folder
-  const targetPath = path.join(__dirname, 'uploaded-images', originalname);
+  const targetPath = path.join(uploadDir, originalname);
   fs.renameSync(path.join(destination, filename), targetPath);
 
   res.send('Image uploaded and saved successfully!');
