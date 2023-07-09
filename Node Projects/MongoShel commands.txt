@@ -2,7 +2,7 @@ create New Db -
 		use newdbname
 
 show available dbs - 
-		show dbs
+		show dbs  
 
 show current db -
 		db
