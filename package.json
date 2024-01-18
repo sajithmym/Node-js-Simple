@@ -1,5 +1,5 @@
 {
-  "name": "node-js-code",
+  "name": "js-code",
   "version": "1.0.0",
   "description": "Using Node js for creating this programs",
   "main": "FileSync.js",
@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/sajithmym/Node-js-Simple/issues"
   },
-  "homepage": "https://github.com/sajithmym/Node-js-Simple#readme"
+  "homepage": "https://github.com/sajithmym/Node-js-Simple#readme",
+  "dependencies": {
+    "bull": "^4.12.2"
+  }
 }
